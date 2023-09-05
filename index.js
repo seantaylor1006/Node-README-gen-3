@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const path = require('path');
+//node variable that sends the questions to the generateMarkdown file
 const fs = require('fs');
 const generateMarkdown = require('./utils/generateMarkdown');
 // TODO: Create an array of questions for user input
@@ -28,8 +29,8 @@ const questions = [
     {
         type: 'list',
         name: 'license',
-        message: 'Select a license. If no license exists, hit enter',
-        choices: ['MIT', 'ODC_BY', 'Zlib']
+        message: 'Select a license.',
+        choices: ['MIT', 'apache-2-0', 'jam']
     },
     {
         type: 'input',
@@ -55,14 +56,17 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-   return fs.writeFile(path.join(process.cwd(), fileName), data);
+   return fs.writeFileSync(path.join(process.cwd(), fileName), data);
+   //writeFileSync prevents file changes until after the inquirer prompts are done. writeFile by itself would create an error
 }
 
 // TODO: Create a function to initialize app
 function init() {
     inquirer.prompt(questions).then((responses) => {
         console.log("writiing file...");
-        writeToFile('./README.md', generateMarkdown({responses}), err => {
+        writeToFile('./README.md', generateMarkdown({ ...responses}), err => {
+        //spread operator in responses allows for the array of questions to be unpacked and
+        //accepted in the function. Otherwise, the created README file will return undefined data.
             err ? console.error(err) : console.log('Readme created')})
     });
 }
