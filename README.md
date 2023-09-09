@@ -2,7 +2,7 @@
     
   ## Description
   
-  A series of Node Modules and Inquirer package designed to create README.md files
+  it makes readme.md files
   ## Table of Contents
   * [Installation](##installation)
   * [Usage](##usage)
@@ -12,9 +12,9 @@
   * [Questions](##Questions)
   
   ## Installation
-  it requires Node.js and Inquirer 8.2.4 to function
+  it requires node.js and inquirer 8.2.4
   ## Usage
-  It makes readmes
+  it's used to create professional readme files efficently
   ## License
 ![License](https://img.shields.io/badge/License:-MIT-purple.svg)
 https://opensource.org/license/MIT/
